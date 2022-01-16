@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/fe579541a1.js" crossorigin="anonymous"></script>
-    <link href="header.css" rel="stylesheet" type="text/css">
+    <link href="css/header.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="header">
@@ -22,15 +22,18 @@
         <li id="navbar">
             <div class="nav">
                 <ul id="nav_grid">
-                    <li><a href="home.html">HOME</a></li>
-                    <li><a href="contact.php">CONTACT</a></li>
-
                     <?php
                         if(isset($_SESSION["id"])) {
+                            echo "<li><a href='itemsManager.php'>POSTS</a></li>";
+                            echo "<li><a href='newsManager.php'>NEWS</a></li>";
+                            echo "<li><a href='contactManager.php'>CONTACT</a></li>";
                             echo "<li><a href='administration.php'>ADMINISTRATION</a></li>";
                             echo "<li><a href='includes/logout.inc.php'>LOGOUT</a></li>";
 
                         } else {
+                            echo "<li><a href='posts.php'>POSTS</a></li>";
+                            echo "<li><a href='news.php'>NEWS</a></li>";
+                            echo "<li><a href='contact.php'>CONTACT</a></li>";
                             echo "<li><a href='login.php'>LOGIN</a></li>";
                             echo "<li><a href='register.php'>REGISTER</a></li>";
                         }

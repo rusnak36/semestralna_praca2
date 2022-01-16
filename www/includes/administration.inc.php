@@ -38,9 +38,14 @@ if(isset($_POST["submit"])) {
     $userExists = accountExists($conn, $username, $username);
     if($userExists !== false){
         $id = $userExists["id"];
-
         $pswHash = password_hash($psw, PASSWORD_DEFAULT);
-        $conn->query("UPDATE users SET username='$username', email='$email', password='$pswHash' WHERE id=$id");
+
+
+        $insert = $conn->prepare("UPDATE users SET username=?, email=?, password=? WHERE id=?");
+        $insert->bind_param("sssi", $username, $email, $password, $id);
+        $insert->execute();
+
+//        $conn->query("UPDATE users SET username='$username', email='$email', password='$pswHash' WHERE id=$id");
 
         header("location: ../administration.php");
         exit();
@@ -51,21 +56,31 @@ if(isset($_POST["submit"])) {
 }
 if(isset($_GET['delete']) && isset($_SESSION["id"])) {
     $id = $_GET['delete'];
-    $sql = "DELETE FROM users WHERE id=$id";
-    if ($conn->query($sql) === TRUE) {
+
+    $insert = $conn->prepare("DELETE FROM users WHERE id=?");
+    $insert->bind_param("i", $id);
+    if($insert->execute()) {
         header("location: ../administration.php");
         exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $insert . "<br>" . $conn->error;
     }
+
+
+
+//    $sql = "DELETE FROM users WHERE id=$id";
+//    if ($conn->query($sql) === TRUE) {
+//        header("location: ../administration.php");
+//        exit();
+//    } else {
+//        echo "Error: " . $sql . "<br>" . $conn->error;
+//    }
 }
 if(isset($_GET['edit']) && isset($_SESSION["id"])) {
     $id = $_GET['edit'];
     $result = $conn->query("SELECT * FROM users WHERE id=$id");
-
         $row = $result->fetch_array();
         $DBusername = $row['username'];
         $DBemail = $row['email'];
         $update = true;
-
 }

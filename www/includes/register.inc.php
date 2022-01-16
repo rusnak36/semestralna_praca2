@@ -1,10 +1,11 @@
 <?php
+
 if(isset($_POST["submit"])) {
 
     $email = $_POST["email"];
     $username = $_POST["username"];
     $psw = $_POST["psw"];
-    $pswRepeat = $_POST["psw-repeat"];
+    $pswRepeat = $_POST["pswRepeat"];
     $servername = "localhost";
     $login = "root";
     $password = "dtb456";
@@ -20,38 +21,39 @@ if(isset($_POST["submit"])) {
 
 
     if (emptyInput($email, $username, $psw, $pswRepeat) !== false) {
-        header("location: ../register.php?error=emptyinput");
-        exit();
+        //header("location: ../register.php?error=emptyinput");
+        exit("Neboli vyplnene vsetky udaje!");
     }
 
+
     if(isUsernameIncorrect($username) !== false) {
-        header("location: ../register.php?error=username");
-        exit();
+        //header("location: ../register.php?error=username");
+        exit("Meno musi obsahovat velke, male pismena a cisla!");
     }
 
     if(isUsernameShot($username) !== false) {
-        header("location: ../register.php?error=usernamelenght");
-        exit();
+        //header("location: ../register.php?error=usernamelenght");
+        exit("Toto meno je prilis kratke!");
     }
 
     if(isEmailIncorrect($email) !== false) {
-        header("location: ../register.php?error=email");
-        exit();
+        //header("location: ../register.php?error=email");
+        exit("Tento mail nieje platny!");
     }
 
     if(passwordNotMatch($psw, $pswRepeat) !== false) {
-        header("location: ../register.php?error=pswnotmatch");
-        exit();
+        //header("location: ../register.php?error=pswnotmatch");
+        exit("Hesla sa nezhoduju!");
     }
 
     if(isPasswordIncorrect($psw) !== false) {
-        header("location: ../register.php?error=incorrectpassword");
-        exit();
+        //header("location: ../register.php?error=incorrectpassword");
+        exit("Heslo musi mat min 8 pismen a obsahovat cisla a znaky");
     }
 
     if (accountExists($conn, $username, $username) !== false) {
-        header("location: ../register.php?error=accountexists");
-        exit();
+        //header("location: ../register.php?error=accountexists");
+        exit("Tento ucet uz exituje!");
     }
 
     createAccount($conn, $email, $username, $psw);

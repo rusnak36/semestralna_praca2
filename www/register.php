@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/fe579541a1.js" crossorigin="anonymous"></script>
-    <link href="register.css" rel="stylesheet" type="text/css">
+    <link href="css/register.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
@@ -40,19 +40,19 @@
             }
             ?>
         </div>
-        <form action="includes/register.inc.php" method="post">
+        <div>
             <ul id="register_grid">
                 <li><p>Enter e-mail</p></li>
-                <li><input type="text" placeholder="E-mail" name="email" id="email" required></li>
+                <li><input type="email" placeholder="E-mail" name="email" id="email" required></li>
                 <li><p>Enter username</p></li>
-                <li><input type="text" placeholder="Username" name="username" required></li>
+                <li><input type="text" placeholder="Username" name="username" id="username"required></li>
                 <li><p>Enter password</p></li>
                 <li><input type="password" placeholder="Password" name="psw" id="psw" required></li>
                 <li><p>Repeat password</p></li>
-                <li><input type="password" placeholder="Repeat password" name="psw-repeat" id="psw-repeat" required></li>
+                <li><input type="password" placeholder="Repeat password" name="psw-repeat" id="pswRepeat" required></li>
             </ul>
-            <button type="submit" name="submit">Register</button>
-        </form>
+            <button type="button" onclick="send()">Register</button>
+        </div>
 
         <div>
             <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
@@ -62,6 +62,9 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="js/register.js"></script>
 </body>
 </html>
 <?php

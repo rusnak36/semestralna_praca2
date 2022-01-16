@@ -36,40 +36,50 @@ function isPasswordIncorrect($psw){
     return false;
 }
 
-function accountExists($conn, $username, $email){
-    $sql = "SELECT * FROM users WHERE username = '$username' OR email = '$email';";
-    $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        return $result->fetch_assoc();
-    } else {
-        return false;
-    }
-}
 function createAccount($conn, $email, $username, $psw) {
 
     $pswHash = password_hash($psw, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$pswHash')";
-    if ($conn->query($sql) === TRUE) {
-        header("location: ../register.php?error=none");
-        exit();
+    $insert = $conn->prepare("INSERT INTO users (email, username, password) VALUES (?, ?, ?)");
+    $insert->bind_param("sss", $email, $username, $pswHash);
+    if($insert->execute()) {
+        exit("Ucet bol vytvoreny!");
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $insert . "<br>" . $conn->error;
     }
+
+
+//    $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$pswHash')";
+//    if ($conn->query($sql) === TRUE) {
+//        //header("location: ../register.php?error=none");
+//        exit("Ucet bol vytvoreny!");
+//    } else {
+//        echo "Error: " . $sql . "<br>" . $conn->error;
+//    }
 }
 
 function createAccountAdministration($conn, $email, $username, $psw) {
 
     $pswHash = password_hash($psw, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$pswHash')";
-    if ($conn->query($sql) === TRUE) {
+    $insert = $conn->prepare("INSERT INTO users (email, username, password) VALUES (?, ?, ?)");
+    $insert->bind_param("sss", $email, $username, $pswHash);
+    if($insert->execute()){
         header("location: ../administration.php?error=none");
         exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $insert . "<br>" . $conn->error;
     }
+
+
+//    $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$pswHash')";
+//    if ($conn->query($sql) === TRUE) {
+//        header("location: ../administration.php?error=none");
+//        exit();
+//    } else {
+//        echo "Error: " . $sql . "<br>" . $conn->error;
+//    }
 }
 
 function emptyInputLogin($username, $psw) {
@@ -95,5 +105,16 @@ function loginUser($conn, $username, $psw) {
         $_SESSION["email"] = $userExists["email"];
         header("location: ../contact.php");
         exit();
+    }
+}
+
+function accountExists($conn, $username, $email){
+    $sql = "SELECT * FROM users WHERE username = '$username' OR email = '$email';";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        return $result->fetch_assoc();
+    } else {
+        return false;
     }
 }

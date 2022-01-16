@@ -13,12 +13,11 @@
     <script src="https://kit.fontawesome.com/fe579541a1.js" crossorigin="anonymous"></script>
     <link href="css/contact.css" rel="stylesheet" type="text/css">
 </head>
-
-<?php
-    $conn = new mysqli('localhost', 'root', 'dtb456', 'db1');
-    $sql = $conn->query("SELECT * FROM contacts");
-?>
 <body>
+<?php
+$conn = new mysqli('localhost', 'root', 'dtb456', 'db1');
+$sql = $conn->query("SELECT * FROM contacts");
+?>
 <div class="main">
     <ul id="hhh">
         <li id="left_grid">
@@ -65,7 +64,7 @@
         </li>
     </ul>
 </div>
-
+</body>
 <?php
 include_once 'footer.php';
 ?>

@@ -17,12 +17,12 @@
 
 <div class="header">
     <nav>
-        <a href="home.html"><img src="images/logo.png" alt="logo"></a>
+        <a href="home.php"><img src="images/logo.png" alt="logo"></a>
         <i class="fas fa-bars" onclick="toggleMenu()"> </i>
         <div class="nav-links" id="navLinks">
 
             <ul>
-                <li><a href="home.html">HOME</a></li>
+                <li><a href="home.php">HOME</a></li>
                 <li><a href="contact.php">CONTACT</a></li>
                 <li><a href="login.php">LOGIN</a></li>
                 <li><a href="register.html">REGISTER</a></li>

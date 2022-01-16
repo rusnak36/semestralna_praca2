@@ -41,7 +41,7 @@ include_once 'header.php';
                                     <li><a>Enter password</a></li>
                                     <li><input class="array" type="password" name="psw" placeholder="Password" required></li>
                                 </ul>
-                            </li class="tabulka">
+                            </li>
 
                             <li class="tabulka">
                                 <div id="button">

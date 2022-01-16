@@ -23,7 +23,7 @@ $sql = $conn->query("SELECT * FROM posts");
 
     <div class="container">
         <?php while ($row = $sql->fetch_assoc()): ?>
-        <div class="card bg-light"">
+        <div class="card bg-light">
             <div class="card-header"><?php echo $row['post_name'];?></div>
             <div class="card-body">
                 <p class="card-text"><?php echo $row['post_description'];?></p>

@@ -5,7 +5,8 @@ if (!isset($_SESSION["id"])) {
 }
 include_once 'includes/administration.inc.php'
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Administration</title>

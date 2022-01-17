@@ -78,9 +78,21 @@ if(isset($_GET['delete']) && isset($_SESSION["id"])) {
 }
 if(isset($_GET['edit']) && isset($_SESSION["id"])) {
     $id = $_GET['edit'];
-    $result = $conn->query("SELECT * FROM users WHERE id=$id");
-        $row = $result->fetch_array();
-        $DBusername = $row['username'];
-        $DBemail = $row['email'];
-        $update = true;
+
+    $insert = $conn->prepare("SELECT email, username FROM users WHERE id=?");
+    $insert->bind_param("i", $id);
+    $insert->execute();
+    $insert->store_result();
+    $insert->bind_result($tempMail, $tempUser);
+    $insert->fetch();
+    $DBusername = $tempUser;
+    $DBemail = $tempMail;
+    $update = true;
+
+
+//    $result = $conn->query("SELECT * FROM users WHERE id=$id");
+//        $row = $result->fetch_array();
+//        $DBusername = $row['username'];
+//        $DBemail = $row['email'];
+//        $update = true;
 }

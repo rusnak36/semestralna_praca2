@@ -64,7 +64,7 @@
         }
 
         $name = $conn->real_escape_string($_POST['name']);
-        $description = $conn->real_escape_string($_POST['description']);
+        $description = $_POST['description'];
         $rowID = $conn->real_escape_string($_POST['rowID']);
 
         if ($_POST['key'] == 'updateRow') {

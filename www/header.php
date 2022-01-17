@@ -17,7 +17,7 @@
 <div class="header">
     <ul>
         <li id="logo_grid">
-            <a href="home.php"><img src="images/logo.png" id="logo" alt="logo"></a>
+            <a href="posts.php"><img src="images/logo.png" id="logo" alt="logo"></a>
         </li>
         <li id="navbar">
             <div class="nav">

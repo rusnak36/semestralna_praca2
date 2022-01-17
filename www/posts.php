@@ -19,7 +19,7 @@ include_once 'header.php';
         <?php while ($row = $sql->fetch_assoc()): ?>
             <div class="card">
                 <div class="card-header text-center">
-                    Featured
+                    Ponuka
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $row['name'];?></h5>

@@ -42,7 +42,7 @@ if(isset($_POST["submit"])) {
 
 
         $insert = $conn->prepare("UPDATE users SET username=?, email=?, password=? WHERE id=?");
-        $insert->bind_param("sssi", $username, $email, $password, $id);
+        $insert->bind_param("sssi", $username, $email, $pswHash, $id);
         $insert->execute();
 
 //        $conn->query("UPDATE users SET username='$username', email='$email', password='$pswHash' WHERE id=$id");
